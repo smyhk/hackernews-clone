@@ -35,13 +35,13 @@ const login = async (parent, args, context, info) => {
   }
 }
 
-const post = (parent, args, context, info) => {
+const post = (parent, { url, description }, context, info) => {
   const userId = getUserId(context);
   return context.db.mutation.createLink(
     {
       data: {
-        url: args.url,
-        description: args.description,
+        url: url,
+        description: description,
         postedBy: { connect: { id: userId } }
       }
     },
